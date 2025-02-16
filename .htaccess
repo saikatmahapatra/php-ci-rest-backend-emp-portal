@@ -1,8 +1,9 @@
-<IfModule mod_rewrite.c>
-     RewriteEngine On
-     RewriteBase /
-     RewriteRule ^index\.html$ - [L]
-     RewriteCond %{REQUEST_FILENAME} !-f
-     RewriteCond %{REQUEST_FILENAME} !-d
-     RewriteRule . index.html [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /php-ci-rest-backend-emp-portal/
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, X-Token-Auth, Authorization, perPage, page"
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.+)$ index.php?$1 [PT,L,QSA]
